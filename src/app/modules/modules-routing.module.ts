@@ -1,4 +1,4 @@
-import { CharDetailComponent } from './char-detail/char-detail.component';
+import { CherecterComponent } from '../detail-compo/cherecter/cherecter.component';
 import { StarshipsComponent } from './starships/starships.component';
 import { SpeciesComponent } from './species/species.component';
 import { PlanetsComponent } from './planets/planets.component';
@@ -11,7 +11,7 @@ import { VehiclesComponent } from './vehicles/vehicles.component';
 const routes: Routes = [
    {
     path:"cherecters",
-    component:CherectersComponent
+    component:CherectersComponent,
    },
    {
     path:"films",
@@ -35,7 +35,7 @@ const routes: Routes = [
    },
    {
     path:'cherecters/:id',
-    component:CharDetailComponent
+    component:CherecterComponent
    }
 ];
 

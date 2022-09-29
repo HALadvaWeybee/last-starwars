@@ -4,40 +4,31 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class CherectersService {
+export class FilmsService {
 
   constructor(private http: HttpClient) { }
-  url = 'https://swapi.dev/api/people';
-  nextUrl: string = 'https://swapi.dev/api/people/?page=1'; 
-  pageCount: number = 1;
+  url = 'https://swapi.dev/api/films';
   details: { data: any; name: string; count: number }[] = [];
 
-  async getAllCherecter() {
-    while (true && this.nextUrl) {
-      let tempUrl = `${this.url}/${'?page='}${this.pageCount}`;
-      // tempUrl 
-      this.pageCount++;
-
-      await this.http
-        .get<any>(tempUrl)
+  async getAllFilms() {
+    await this.http
+        .get<any>(this.url)
         .toPromise()
         .then((data) => {
-          this.nextUrl = data.next;
           data.results.forEach((ele: any) => {
             let imageNum = Number(ele.url.match(/\d+/g).join(''));
             this.details.push({
               data: ele,
-              name: ele.name,
+              name: ele.title,
               count: imageNum,
             });
           });
         });
-    }
   }
 
-  getSpecifyChrecter(id:number) { 
+  getSpecifyFilm(id:number) { 
      let index = this.details.findIndex(ele => ele.count==id);
      console.log("index", index);
-     return this.details[index]?.data; 
+     return this.details[index].data; 
   }
-} 
+}

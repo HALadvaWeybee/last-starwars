@@ -4,15 +4,15 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class CherectersService {
+export class VehiclesService {
 
   constructor(private http: HttpClient) { }
-  url = 'https://swapi.dev/api/people';
-  nextUrl: string = 'https://swapi.dev/api/people/?page=1'; 
+  url = 'https://swapi.dev/api/vehicles';
+  nextUrl: string = 'https://swapi.dev/api/vehicles/?page=1'; 
   pageCount: number = 1;
   details: { data: any; name: string; count: number }[] = [];
 
-  async getAllCherecter() {
+  async getAllVehicles() {
     while (true && this.nextUrl) {
       let tempUrl = `${this.url}/${'?page='}${this.pageCount}`;
       // tempUrl 
@@ -35,9 +35,9 @@ export class CherectersService {
     }
   }
 
-  getSpecifyChrecter(id:number) { 
+  getSpecifyVehicle(id:number) { 
      let index = this.details.findIndex(ele => ele.count==id);
      console.log("index", index);
      return this.details[index]?.data; 
   }
-} 
+}

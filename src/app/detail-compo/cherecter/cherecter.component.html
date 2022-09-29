@@ -1,0 +1,34 @@
+<div class="d-flex flex-column">
+    <div class="d-flex flex-row">
+        <div class="image">
+            <img src="https://starwars-visualguide.com/assets/img/characters/{{id}}.jpg" alt="No image found" width="300" height="300">
+        </div>
+        <div class="details">
+            <ul>
+                <li>Name: {{detailArr?.name}}</li>
+                <li>Birth Year: {{detailArr?.birth_year}}</li>
+                <li>Species: {{detailArr?.species}}</li>
+                <li>Height: {{detailArr?.height}}</li>
+                <li>Mass: {{detailArr?.mass}}</li>
+                <li>Gender: {{detailArr?.gender}}</li>
+                <li>Hair Color: {{detailArr?.hair_color}}</li>
+                <li>Skin Color: {{detailArr?.skin_color}}</li>
+                <li>Homeworld: {{homeworld}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="d-flex flex-row">
+        <div class="d-flex flex-column">
+            <div>
+                <h5>Related Starships</h5>
+            </div>
+            <div class="d-flex flex-row">
+                <ul *ngFor="let item of starships;let i = index">
+                    <li><img src="https://starwars-visualguide.com/assets/img/starships/{{item.imageNo}}.jpg" alt="No image found" width="200" height="200"> </li>
+                    <li>{{item.data.name}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
