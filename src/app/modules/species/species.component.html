@@ -1,6 +1,12 @@
-<div class="main_div">
-    <div class="detail" *ngFor="let item of printDetails">
-      <a><img src="https://starwars-visualguide.com/assets/img/species/{{item.count}}.jpg" alt="No image found"></a>
+<div class="pagination">
+  <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+</div>
+<div style="clear: both;"></div>
+<div class="container">
+  <div class="main_div">
+    <div class="detail" *ngFor="let item of chars | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total }; let i = index;">
+      <a routerLink="{{item.url}}"><img src="https://starwars-visualguide.com/assets/img/species/{{item.url}}.jpg" alt="No image found" onerror="this.src='https://starwars-visualguide.com/assets/img/placeholder.jpg'"></a>
       <h4>{{item.name}}</h4>
     </div>
+  </div>
 </div>

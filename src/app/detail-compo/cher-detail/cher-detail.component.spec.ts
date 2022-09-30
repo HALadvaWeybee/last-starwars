@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SpecieComponent } from './specie.component';
+import { CherDetailComponent } from './cher-detail.component';
 
-describe('SpecieComponent', () => {
-  let component: SpecieComponent;
-  let fixture: ComponentFixture<SpecieComponent>;
+describe('CherDetailComponent', () => {
+  let component: CherDetailComponent;
+  let fixture: ComponentFixture<CherDetailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SpecieComponent ]
+      declarations: [ CherDetailComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SpecieComponent);
+    fixture = TestBed.createComponent(CherDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

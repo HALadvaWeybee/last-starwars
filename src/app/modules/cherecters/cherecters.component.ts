@@ -12,23 +12,44 @@ import { StarshipsService } from 'src/app/services/starships.service';
   styleUrls: ['./cherecters.component.scss']
 })
 export class CherectersComponent implements OnInit { 
-  printDetails: { data: any; name: string; count: number }[] = [];
-
-  constructor(private charService: CherectersService, private planetsService: PlanetsService,
-     private filmsService:FilmsService,
-     private vehiclesService:VehiclesService,
-     private starshipsService:StarshipsService
-    ) {
+  // printDetails: { data: any; name: string; count: number }[] = [];
+  constructor(private cherecterService: CherectersService) { }
+  chars:any;
+  p:number = Number(localStorage.getItem('cherecter')) || 1;
+  total:number = 0;
+  ngOnInit(): void {
+     this.getCherecters();
   }
 
-  ngOnInit() {
-    this.charService.getAllCherecter();
-    this.planetsService.getAllPlanets();
-    this.filmsService.getAllFilms();
-    this.vehiclesService.getAllVehicles();
-    this.starshipsService.getAllStarships();
-    this.printDetails = this.charService.details;
+  getCherecters() {
+    this.cherecterService.getAllCherecter(this.p).subscribe((response:any) => {
+       response.results.forEach((ele:any) => ele.url = Number(ele.url.match(/\d+/g).join('')))
+       this.chars = response.results;
+       this.total = response.count;
+    })
   }
+
+  pageChangeEvent(event: number) {
+    this.p = event;
+    localStorage.setItem('cherecter', JSON.stringify(this.p));
+    this.getCherecters();
+  }
+
+  // constructor(private charService: CherectersService, private planetsService: PlanetsService,
+  //    private filmsService:FilmsService,
+  //    private vehiclesService:VehiclesService,
+  //    private starshipsService:StarshipsService
+  //   ) {
+  // }
+
+  // ngOnInit() {
+  //   this.charService.getAllCherecter();
+  //   this.planetsService.getAllPlanets();
+  //   this.filmsService.getAllFilms();
+  //   this.vehiclesService.getAllVehicles();
+  //   this.starshipsService.getAllStarships();
+  //   this.printDetails = this.charService.details;
+  // }
 
   // moveToCherecter(id:number) {
   //   this.router.navigate(['cherecters',id]);

@@ -1,6 +1,6 @@
 import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CherectersComponent } from './modules/cherecters/cherecters.component';
@@ -11,13 +11,13 @@ import { VehiclesComponent } from './modules/vehicles/vehicles.component';
 import { PlanetsComponent } from './modules/planets/planets.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FilmComponent } from './detail-compo/film/film.component';
-import { PlanetComponent } from './detail-compo/planet/planet.component';
-import { StarshipComponent } from './detail-compo/starship/starship.component';
-import { VehicleComponent } from './detail-compo/vehicle/vehicle.component';
-import { SpecieComponent } from './detail-compo/specie/specie.component';
+import { FilmDetailComponent } from './detail-compo/film-detail/film-detail.component';
+import { PlanetDetailComponent } from './detail-compo/planet-detail/planet-detail.component';
+import { ShipDetailComponent } from './detail-compo/ship-detail/ship-detail.component';
+import { VehicleDetailComponent } from './detail-compo/vehicle-detail/vehicle-detail.component';
+import { SpecDetailComponent } from './detail-compo/spec-detail/spec-detail.component';
+import { CherDetailComponent } from './detail-compo/cher-detail/cher-detail.component';
 import { DetailCompoModule } from './detail-compo/detail-compo.module';
-import { CherecterComponent } from './detail-compo/cherecter/cherecter.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,18 +28,19 @@ import { CherecterComponent } from './detail-compo/cherecter/cherecter.component
     VehiclesComponent,
     PlanetsComponent,
     HomeComponent,
-    FilmComponent,
-    PlanetComponent,
-    StarshipComponent,
-    VehicleComponent,
-    SpecieComponent,
-    CherecterComponent
+    FilmDetailComponent,
+    PlanetDetailComponent,
+    ShipDetailComponent,
+    VehicleDetailComponent,
+    SpecDetailComponent,
+    CherDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    DetailCompoModule,
+    NgxPaginationModule,
+    DetailCompoModule
   ],
   providers: [],
   bootstrap: [AppComponent]

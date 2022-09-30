@@ -1,0 +1,44 @@
+<div class="d-flex flex-column">
+    <div class="d-flex flex-row"> 
+        <div class="image">
+            <img src="https://starwars-visualguide.com/assets/img/planets/{{id}}.jpg" alt="No image found" width="300" height="300" onerror="this.src='https://starwars-visualguide.com/assets/img/placeholder.jpg'">
+        </div>
+        <div class="details">
+            <ul> 
+                <li>{{planet?.name}}</li>
+                <li>Population: {{planet?.population}}</li>
+                <li>Rotation Period: {{planet?.rotation_period}}</li>
+                <li>Orbital Period: {{planet?.orbital_period}}</li>
+                <li>Diameter: {{planet?.diameter}}</li>
+                <li>Gravity: {{planet?.gravity}}</li>
+                <li>Terrain: {{planet?.terrain}}</li>
+                <li>Surface Water: {{planet?.surface_water}}</li>
+                <li>Climate: {{planet?.climate}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="d-flex flex-column">
+        <div class="d-flex flex-column">
+            <div>
+                <h5>Related films</h5>  
+            </div>
+            <div class="d-flex flex-row">
+                <ul *ngFor="let item of films">
+                    <li><img src="https://starwars-visualguide.com/assets/img/films/{{item.url}}.jpg" alt="No image found"></li>
+                    <li>{{item?.title}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <div>
+                <h5>Related Peoples</h5>  
+            </div>
+            <div class="d-flex flex-row">
+                <ul *ngFor="let item of peoples">
+                    <li><img src="https://starwars-visualguide.com/assets/img/characters/{{item.url}}.jpg" alt="No image found"></li>
+                    <li>{{item?.name}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

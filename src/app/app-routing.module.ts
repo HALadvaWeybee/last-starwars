@@ -9,8 +9,12 @@ const routes: Routes = [
   }, 
   {
     path:"listof",
-    loadChildren: () => import('./modules/modules.module').then(m => m.ModulesModule)
-  }
+    loadChildren: () => import('./modules/modules.module').then(m => m.ModulesModule),
+  },
+  // {
+  //   path:'listof/:slug/detailof',
+  //   loadChildren: () => import('./detail-compo/detail-compo.module').then(m => m.DetailCompoModule)
+  // }
 ];
 
 @NgModule({

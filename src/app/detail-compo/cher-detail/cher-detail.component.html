@@ -1,0 +1,55 @@
+<div class="d-flex flex-column">
+    <div class="d-flex flex-row"> 
+        <div class="image">
+            <img src="https://starwars-visualguide.com/assets/img/characters/{{id}}.jpg" alt="No image found" width="300" height="300">
+        </div>
+        <div class="details">
+            <ul>
+                <li>Name: {{people?.name}}</li>
+                <li>Birth Year: {{people?.birth_year}}</li>
+                <li>Species: {{people?.species}}</li>
+                <li>Height: {{people?.height}}</li>
+                <li>Mass: {{people?.mass}}</li>
+                <li>Gender: {{people?.gender}}</li>
+                <li>Hair Color: {{people?.hair_color}}</li>
+                <li>Skin Color: {{people?.skin_color}}</li>
+                <li>Homeworld: {{people?.homeworld}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="d-flex flex-column">
+        <div class="d-flex flex-column">
+            <div>
+                <h5>Related films</h5>  
+            </div>
+            <div class="d-flex flex-row">
+                <ul *ngFor="let item of films">
+                    <li><img src="https://starwars-visualguide.com/assets/img/films/{{item.url}}.jpg" alt="No image found"></li>
+                    <li>{{item?.title}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <div>
+                <h5>Related Vehicles</h5>  
+            </div>
+            <div class="d-flex flex-row">
+                <ul *ngFor="let item of vehicles">
+                    <li><img src="https://starwars-visualguide.com/assets/img/vehicles/{{item.url}}.jpg" alt="No image found"></li>
+                    <li>{{item?.name}}</li>
+                </ul>
+            </div>
+        <div class="d-flex flex-column">
+            <div>
+                <h5>Related starships</h5>  
+            </div>
+            <div class="d-flex flex-row">
+                <ul *ngFor="let item of starships">
+                    <li><img src="https://starwars-visualguide.com/assets/img/starships/{{item.url}}.jpg" alt="No image found" onerror="this.src='https://starwars-visualguide.com/assets/img/placeholder.jpg'"></li>
+                    <li>{{item?.name}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

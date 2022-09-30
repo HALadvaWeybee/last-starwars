@@ -7,13 +7,25 @@ import { FilmsService } from 'src/app/services/films.service';
   styleUrls: ['./films.component.scss'],
 })
 export class FilmsComponent implements OnInit {
-  printDetails: { data: any; name: string; count: number }[] = [];
-
-  constructor(private filmService: FilmsService) {
+  constructor(private filmsService: FilmsService) { }
+  chars:any;
+  p:number = Number(localStorage.getItem('film')) || 1;
+  total:number = 0;
+  ngOnInit(): void {
+     this.getFilms();
   }
 
-  ngOnInit() {
-     this.filmService.getAllFilms();
-     this.printDetails = this.filmService.details;
+  getFilms() {
+    this.filmsService.getAllFilm(this.p).subscribe((response:any) => {
+       response.results.forEach((ele:any) => ele.url = Number(ele.url.match(/\d+/g).join('')))
+       this.chars = response.results;
+       this.total = response.count;
+    })
+  }
+
+  pageChangeEvent(event: number) {
+    this.p = event;
+    localStorage.setItem('film', JSON.stringify(this.p));
+    this.getFilms();
   }
 }

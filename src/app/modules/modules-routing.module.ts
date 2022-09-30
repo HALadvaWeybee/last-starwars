@@ -1,4 +1,8 @@
-import { CherecterComponent } from '../detail-compo/cherecter/cherecter.component';
+import { VehicleDetailComponent } from './../detail-compo/vehicle-detail/vehicle-detail.component';
+import { ShipDetailComponent } from './../detail-compo/ship-detail/ship-detail.component';
+import { SpecDetailComponent } from './../detail-compo/spec-detail/spec-detail.component';
+import { PlanetDetailComponent } from './../detail-compo/planet-detail/planet-detail.component';
+import { CherDetailComponent } from './../detail-compo/cher-detail/cher-detail.component';
 import { StarshipsComponent } from './starships/starships.component';
 import { SpeciesComponent } from './species/species.component';
 import { PlanetsComponent } from './planets/planets.component';
@@ -35,8 +39,24 @@ const routes: Routes = [
    },
    {
     path:'cherecters/:id',
-    component:CherecterComponent
-   }
+    component:CherDetailComponent,
+   },
+   {
+    path:'planets/:id',
+    component:PlanetDetailComponent,
+   },
+   {
+    path:'species/:id',
+    component:SpecDetailComponent,
+   },
+   {
+    path:'starships/:id',
+    component:ShipDetailComponent,
+   },
+   {
+    path:'vehicles/:id',
+    component:VehicleDetailComponent,
+   },
 ];
 
 @NgModule({
