@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { JsLoader } from 'src/app/shared/js-loader';
 
 @Component({
   selector: 'app-film-detail',
@@ -36,7 +37,6 @@ export class FilmDetailComponent implements OnInit {
       this.getPlanets(this.film.planets);
       this.getSpecies(this.film.species);
     }); 
-    this.slickSlider()
   }
   
   slickSlider() {
