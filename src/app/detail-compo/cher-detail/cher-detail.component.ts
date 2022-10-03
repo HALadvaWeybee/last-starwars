@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { JsLoader } from 'src/app/shared/js-loader';
 
 @Component({
   selector: 'app-cher-detail',
@@ -12,13 +13,14 @@ import { map } from 'rxjs/operators';
 export class CherDetailComponent implements OnInit {
 
   
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
   id:number = 0;
   detailArr: Observable<{}> = new Observable();
   people:any;
   films:any[] =[];
   vehicles:any[] =[];
   starships:any[] =[];
+  charName:string = '';
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
@@ -27,10 +29,13 @@ export class CherDetailComponent implements OnInit {
     this.detailArr.subscribe(result => {
       this.people = result;
       console.log("this is my reeeee", this.people);
+      this.charName = this.people?.name;
       this.getVehicles(this.people.vehicles);
       this.getStarships(this.people.starships);
       this.getFilms(this.people.films);
     }); 
+    // JsLoader.slickSlider(); 
+    
   }
   
   async getVehicles(arr:any) {
@@ -61,6 +66,26 @@ export class CherDetailComponent implements OnInit {
         console.log("film",data);  
       })
     }
+  }
+
+  moveToFilm(id:number) {
+    this.router.navigate(['listof/films', id]);
+  }
+
+  moveToVehicles(id:number) {
+    this.router.navigate(['listof/vehicles', id]);
+  }
+
+  moveToStarships(id:number) {
+    this.router.navigate(['listof/starships', id]);
+  }
+  
+  moveToHome() {
+    this.router.navigate(['']);
+  }
+  
+  moveToChar() {
+    this.router.navigate(['listof/cherecters']);
   }
 
 }

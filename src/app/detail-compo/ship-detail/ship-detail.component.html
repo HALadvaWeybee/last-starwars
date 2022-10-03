@@ -1,3 +1,12 @@
+<div class="breadcrump">
+    <ul class="bread">
+        <li (click)="moveToHome()">Home</li>
+        <li>/</li>
+        <li (click)="moveToStarship()">starships</li>
+        <li>/</li>
+        <li>{{starship?.name}}</li>
+    </ul>
+</div>
 <div class="d-flex flex-column">
     <div class="d-flex flex-row"> 
         <div class="image">
@@ -27,7 +36,7 @@
             <div class="d-flex flex-row">
                 <ul *ngFor="let item of films">
                     <li><img src="https://starwars-visualguide.com/assets/img/films/{{item.url}}.jpg" alt="No image found"></li>
-                    <li>{{item?.title}}</li>
+                    <li (click)="moveToFilm(item.url)">{{item?.title}}</li>
                 </ul>
             </div>
         </div>
@@ -38,7 +47,7 @@
             <div class="d-flex flex-row">
                 <ul *ngFor="let item of peoples">
                     <li><img src="https://starwars-visualguide.com/assets/img/characters/{{item.url}}.jpg" alt="No image found"></li>
-                    <li>{{item?.name}}</li>
+                    <li (click)="moveToPeople(item.url)">{{item?.name}}</li>
                 </ul>
             </div>
         </div>

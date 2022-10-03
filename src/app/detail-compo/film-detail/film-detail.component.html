@@ -1,1 +1,87 @@
-<p>film works!</p>
+<div class="breadcrump">
+    <ul class="bread">
+        <li (click)="moveToHome()">Home</li>
+        <li>/</li>
+        <li (click)="moveToFilm()">films</li>
+        <li>/</li>
+        <li>{{film?.title}}</li>
+    </ul>
+</div>
+<div class="d-flex flex-column">
+    <div class="d-flex flex-row"> 
+        <div class="image">
+            <img src="https://starwars-visualguide.com/assets/img/films/{{id}}.jpg" alt="No image found" width="300" height="300">
+        </div>
+        <div class="details">
+            <ul>
+                <li>Name: {{film?.title}}</li>
+                <li>Date Created: {{film?.created}}</li>
+                <li>Directer: {{film?.director}}</li>
+                <li>Producer(s): {{film?.producer}}</li>
+                <li>Opening crawl: {{film?.opening_crawl}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="d-flex flex-column">
+        <div class="d-flex flex-column">
+            <div>
+                <h5>Related Peoples</h5>  
+            </div>
+            <div class="d-flex flex-row responsive">
+                <!-- <div class="slick-slider" *ngFor="let item of people">
+                    <div class="element element-1"><img src="https://starwars-visualguide.com/assets/img/characters/{{item.url}}.jpg" alt="No image found"></div>
+                    <div class="element element-2" (click)="moveToPeople(item.url)">{{item?.name}}</div>
+                </div> -->
+                <ul *ngFor="let item of people">
+                    <li><img src="https://starwars-visualguide.com/assets/img/characters/{{item.url}}.jpg" alt="No image found"></li>
+                    <li (click)="moveToPeople(item.url)">{{item?.name}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <div>
+                <h5>Related Species</h5>  
+            </div>
+            <div class="d-flex flex-row">
+                <ul *ngFor="let item of species">
+                    <li><img src="https://starwars-visualguide.com/assets/img/species/{{item.url}}.jpg" alt="No image found"></li>
+                    <li (click)="moveToSpecies(item.url)">{{item?.name}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <div>
+                <h5>Related Vehicles</h5>  
+            </div>
+            <div class="d-flex flex-row">
+                <ul *ngFor="let item of vehicles">
+                    <li><img src="https://starwars-visualguide.com/assets/img/vehicles/{{item.url}}.jpg" alt="No image found"></li>
+                    <li (click)="moveToVehicles(item.url)">{{item?.name}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <div>
+                <h5>Related starships</h5>  
+            </div>
+            <div class="d-flex flex-row">
+                <ul *ngFor="let item of starships">
+                    <li><img src="https://starwars-visualguide.com/assets/img/starships/{{item.url}}.jpg" alt="No image found" onerror="this.src='https://starwars-visualguide.com/assets/img/placeholder.jpg'"></li>
+                    <li (click)="moveToStarships(item.url)">{{item?.name}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <div>
+                <h5>Related Planets</h5>  
+            </div>
+            <div class="d-flex flex-row">
+                <ul *ngFor="let item of planets">
+                    <li><img src="https://starwars-visualguide.com/assets/img/planets/{{item.url}}.jpg" alt="No image found" onerror="this.src='https://starwars-visualguide.com/assets/img/placeholder.jpg'"></li>
+                    <li (click)="moveToPlanets(item.url)">{{item?.name}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

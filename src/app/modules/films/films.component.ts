@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FilmsService } from 'src/app/services/films.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { FilmsService } from 'src/app/services/films.service';
   styleUrls: ['./films.component.scss'],
 })
 export class FilmsComponent implements OnInit {
-  constructor(private filmsService: FilmsService) { }
+  constructor(private filmsService: FilmsService, private router: Router) { }
   chars:any;
   p:number = Number(localStorage.getItem('film')) || 1;
   total:number = 0;
@@ -27,5 +28,9 @@ export class FilmsComponent implements OnInit {
     this.p = event;
     localStorage.setItem('film', JSON.stringify(this.p));
     this.getFilms();
+  }
+
+  moveToHome() {
+    this.router.navigate(['']);
   }
 }

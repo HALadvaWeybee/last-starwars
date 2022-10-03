@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class StarshipsComponent implements OnInit {
 
-  constructor(private starshipService:StarshipsService) { }
+  constructor(private starshipService:StarshipsService, private router: Router) { }
   chars:any;
   p:number = Number(localStorage.getItem('starship')) || 1;
   total:number = 0;
@@ -30,6 +30,9 @@ export class StarshipsComponent implements OnInit {
     localStorage.setItem('starship', JSON.stringify(this.p));
     this.getStarships();
   }
-
+  
+  moveToHome() {
+    this.router.navigate(['']);
+  }
 
 }

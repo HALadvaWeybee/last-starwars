@@ -1,3 +1,4 @@
+
 import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -18,6 +19,7 @@ import { VehicleDetailComponent } from './detail-compo/vehicle-detail/vehicle-de
 import { SpecDetailComponent } from './detail-compo/spec-detail/spec-detail.component';
 import { CherDetailComponent } from './detail-compo/cher-detail/cher-detail.component';
 import { DetailCompoModule } from './detail-compo/detail-compo.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +42,7 @@ import { DetailCompoModule } from './detail-compo/detail-compo.module';
     AppRoutingModule,
     HttpClientModule,
     NgxPaginationModule,
-    DetailCompoModule
+    DetailCompoModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

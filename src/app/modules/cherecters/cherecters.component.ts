@@ -13,7 +13,7 @@ import { StarshipsService } from 'src/app/services/starships.service';
 })
 export class CherectersComponent implements OnInit { 
   // printDetails: { data: any; name: string; count: number }[] = [];
-  constructor(private cherecterService: CherectersService) { }
+  constructor(private cherecterService: CherectersService, private router: Router) { }
   chars:any;
   p:number = Number(localStorage.getItem('cherecter')) || 1;
   total:number = 0;
@@ -51,8 +51,8 @@ export class CherectersComponent implements OnInit {
   //   this.printDetails = this.charService.details;
   // }
 
-  // moveToCherecter(id:number) {
-  //   this.router.navigate(['cherecters',id]);
-  // }
+  moveToHome() {
+    this.router.navigate(['']);
+  }
 
 }

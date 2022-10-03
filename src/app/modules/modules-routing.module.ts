@@ -1,3 +1,4 @@
+import { FilmDetailComponent } from './../detail-compo/film-detail/film-detail.component';
 import { VehicleDetailComponent } from './../detail-compo/vehicle-detail/vehicle-detail.component';
 import { ShipDetailComponent } from './../detail-compo/ship-detail/ship-detail.component';
 import { SpecDetailComponent } from './../detail-compo/spec-detail/spec-detail.component';
@@ -56,6 +57,10 @@ const routes: Routes = [
    {
     path:'vehicles/:id',
     component:VehicleDetailComponent,
+   },
+   {
+    path:'films/:id',
+    component:FilmDetailComponent,
    },
 ];
 

@@ -1,3 +1,12 @@
+<div class="breadcrump">
+    <ul class="bread">
+        <li (click)="moveToHome()">Home</li>
+        <li>/</li>
+        <li (click)="moveToChar()">cherecters</li>
+        <li>/</li>
+        <li>{{charName}}</li>
+    </ul>
+</div>
 <div class="d-flex flex-column">
     <div class="d-flex flex-row"> 
         <div class="image">
@@ -25,7 +34,7 @@
             <div class="d-flex flex-row">
                 <ul *ngFor="let item of films">
                     <li><img src="https://starwars-visualguide.com/assets/img/films/{{item.url}}.jpg" alt="No image found"></li>
-                    <li>{{item?.title}}</li>
+                    <li (click)="moveToFilm(item.url)">{{item?.title}}</li>
                 </ul>
             </div>
         </div>
@@ -36,7 +45,7 @@
             <div class="d-flex flex-row">
                 <ul *ngFor="let item of vehicles">
                     <li><img src="https://starwars-visualguide.com/assets/img/vehicles/{{item.url}}.jpg" alt="No image found"></li>
-                    <li>{{item?.name}}</li>
+                    <li (click)="moveToVehicles(item.url)">{{item?.name}}</li>
                 </ul>
             </div>
         <div class="d-flex flex-column">
@@ -46,7 +55,7 @@
             <div class="d-flex flex-row">
                 <ul *ngFor="let item of starships">
                     <li><img src="https://starwars-visualguide.com/assets/img/starships/{{item.url}}.jpg" alt="No image found" onerror="this.src='https://starwars-visualguide.com/assets/img/placeholder.jpg'"></li>
-                    <li>{{item?.name}}</li>
+                    <li (click)="moveToStarships(item.url)">{{item?.name}}</li>
                 </ul>
             </div>
         </div>

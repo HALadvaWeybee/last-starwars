@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { VehiclesService } from 'src/app/services/vehicles.service';
 
@@ -8,7 +9,7 @@ import { VehiclesService } from 'src/app/services/vehicles.service';
 })
 export class VehiclesComponent implements OnInit {
 
-  constructor(private vehiclesService: VehiclesService) { }
+  constructor(private vehiclesService: VehiclesService, private router:Router) { }
   chars:any;
   p:number = Number(localStorage.getItem('vehicle')) || 1;
   total:number = 0;
@@ -29,6 +30,8 @@ export class VehiclesComponent implements OnInit {
     localStorage.setItem('vehicle', JSON.stringify(this.p));
     this.getVehicles();
   }
-
+  moveToHome() {
+    this.router.navigate(['']);
+  }
 
 }

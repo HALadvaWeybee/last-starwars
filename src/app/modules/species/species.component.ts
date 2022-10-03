@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { SpeciesService } from 'src/app/services/species.service';
 
@@ -10,7 +11,7 @@ export class SpeciesComponent implements OnInit {
 
   printDetails: { data: any; name: string; count: number }[] = [];
 
-  constructor(private speciesService: SpeciesService) { }
+  constructor(private speciesService: SpeciesService, private router: Router) { }
   chars:any;
   p:number = Number(localStorage.getItem('specie')) || 1;
   total:number = 0;
@@ -30,5 +31,8 @@ export class SpeciesComponent implements OnInit {
     this.p = event;
     localStorage.setItem('specie', JSON.stringify(this.p));
     this.getSpecies();
+  }
+  moveToHome() {
+    this.router.navigate(['']);
   }
 }

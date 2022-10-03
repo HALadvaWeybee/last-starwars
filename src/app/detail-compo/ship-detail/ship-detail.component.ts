@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute , Router} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 })
 export class ShipDetailComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router:Router) { }
   id:number = 0;
   detailArr: Observable<{}> = new Observable();
   starship:any;
@@ -49,6 +49,19 @@ export class ShipDetailComponent implements OnInit {
         console.log("film",data);  
       })
     }
+  }
+
+  moveToFilm(id:number) {
+    this.router.navigate(['listof/films', id]);
+  }
+  moveToPeople(id:number) {
+    this.router.navigate(['listof/cherecters', id]);
+  }
+  moveToStarship() {
+    this.router.navigate(['listof/starships']);
+  }
+  moveToHome() {
+    this.router.navigate(['']);
   }
 
 }

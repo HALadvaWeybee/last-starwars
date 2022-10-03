@@ -12,6 +12,15 @@
     float: right;
 }
 
+.breadcrump {
+  .bread{
+       li {
+          display: inline-block;
+          letter-spacing: 4px;
+          margin: 11px;
+       }
+  }
+}
 .main_div {
     display: grid;
     grid-template-columns: auto auto auto auto auto;
