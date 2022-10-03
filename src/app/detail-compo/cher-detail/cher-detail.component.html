@@ -1,64 +1,100 @@
-<div class="breadcrump">
-    <ul class="bread">
-        <li (click)="moveToHome()">Home</li>
-        <li>/</li>
-        <li (click)="moveToChar()">cherecters</li>
-        <li>/</li>
-        <li>{{people?.name}}</li>
-    </ul>
+<div class="container text-center main-logo">
+    <img src="https://www.wallpaperflare.com/static/929/720/1006/star-wars-general-grievous-star-wars-wallpaper-preview.jpg"
+        alt="logo not found">
 </div>
-<div class="d-flex flex-column">
-    <div class="d-flex flex-row"> 
-        <div class="image">
-            <img src="https://starwars-visualguide.com/assets/img/characters/{{id}}.jpg" alt="No image found" width="300" height="300">
-        </div>
-        <div class="details">
-            <ul>
-                <li>Name: {{people?.name}}</li>
-                <li>Birth Year: {{people?.birth_year}}</li>
-                <li>Species: {{people?.species}}</li>
-                <li>Height: {{people?.height}}</li>
-                <li>Mass: {{people?.mass}}</li>
-                <li>Gender: {{people?.gender}}</li>
-                <li>Hair Color: {{people?.hair_color}}</li>
-                <li>Skin Color: {{people?.skin_color}}</li>
-                <li>Homeworld: {{homeworld}}</li>
+<div class="container b-border">
+    <div class="d-flex flex-row justify-content-between">
+        <div class="breadcrump">
+            <ul class="bread">
+                <li (click)="moveToHome()">Home</li>
+                <li>/</li>
+                <li (click)="moveToChar()">cherecters</li>
+                <li>/</li>
+                <li>{{people?.name}}</li>
             </ul>
         </div>
     </div>
-    <div class="d-flex flex-column more-detail">
-        <div class="d-flex flex-column detail">
-            <div>
-                <h5>Related films</h5>  
+</div>
+<div class="container">
+    <div class="d-flex flex-column">
+        <div class="d-flex flex-row">
+            <div class="image">
+                <img src="https://starwars-visualguide.com/assets/img/characters/{{id}}.jpg" alt="No image found"
+                    width="300" height="300">
             </div>
-            <div class="d-flex flex-row people-slider">
-                <ul *ngFor="let item of films">
-                    <li><img src="https://starwars-visualguide.com/assets/img/films/{{item.url}}.jpg" alt="No image found"></li>
-                    <li (click)="moveToFilm(item.url)">{{item?.title}}</li>
+            <div class="details">
+                <ul>
+                    <li>Name: {{people?.name}}</li>
+                    <li>Birth Year: {{people?.birth_year}}</li>
+                    <li>Species: {{people?.species}}</li>
+                    <li>Height: {{people?.height}}</li>
+                    <li>Mass: {{people?.mass}}</li>
+                    <li>Gender: {{people?.gender}}</li>
+                    <li>Hair Color: {{people?.hair_color}}</li>
+                    <li>Skin Color: {{people?.skin_color}}</li>
+                    <li>Homeworld: {{homeworld}}</li>
                 </ul>
             </div>
         </div>
-        <div class="d-flex flex-column detail">
-            <div>
-                <h5>Related Vehicles</h5>  
+        <div class="d-flex flex-column more-detail">
+            <div class="d-flex flex-column detail">
+                <div>
+                    <h5>Related films</h5>
+                </div>
+                <div class="d-flex flex-row people-slider" *ngIf="loading">
+                    <div class="container">
+                        <div class="d-flex justify-content-center align-content-center">
+                                <div class="loader"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-row people-slider" *ngIf="!loading">
+                    <ul *ngFor="let item of films">
+                        <li><img src="https://starwars-visualguide.com/assets/img/films/{{item.url}}.jpg"
+                                alt="No image found"></li>
+                        <li (click)="moveToFilm(item.url)">{{item?.title}}</li>
+                    </ul>
+                </div>
             </div>
-            <div class="d-flex flex-row people-slider">
-                <ul *ngFor="let item of vehicles">
-                    <li><img src="https://starwars-visualguide.com/assets/img/vehicles/{{item.url}}.jpg" alt="No image found"></li>
-                    <li (click)="moveToVehicles(item.url)">{{item?.name}}</li>
-                </ul>
-            </div>
-        <div class="d-flex flex-column detail">
-            <div>
-                <h5>Related starships</h5>  
-            </div>
-            <div class="d-flex flex-row people-slider">
-                <ul *ngFor="let item of starships">
-                    <li><img src="https://starwars-visualguide.com/assets/img/starships/{{item.url}}.jpg" alt="No image found" onerror="this.src='https://starwars-visualguide.com/assets/img/placeholder.jpg'"></li>
-                    <li (click)="moveToStarships(item.url)">{{item?.name}}</li>
-                </ul>
+            <div class="d-flex flex-column detail">
+                <div>
+                    <h5>Related Vehicles</h5>
+                </div>
+                <div class="d-flex flex-row people-slider" *ngIf="loading1">
+                    <div class="container">
+                        <div class="d-flex justify-content-center align-content-center">
+                                <div class="loader"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-row people-slider" *ngIf="!loading1">
+                    <ul *ngFor="let item of vehicles">
+                        <li><img src="https://starwars-visualguide.com/assets/img/vehicles/{{item.url}}.jpg"
+                                alt="No image found"></li>
+                        <li (click)="moveToVehicles(item.url)">{{item?.name}}</li>
+                    </ul>
+                </div>
+                <div class="d-flex flex-column detail">
+                    <div>
+                        <h5>Related starships</h5>
+                    </div>
+                    <div class="d-flex flex-row people-slider" *ngIf="loading2">
+                        <div class="container">
+                            <div class="d-flex justify-content-center align-content-center">
+                                    <div class="loader"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row people-slider" *ngIf="!loading2">
+                        <ul *ngFor="let item of starships">
+                            <li><img src="https://starwars-visualguide.com/assets/img/starships/{{item.url}}.jpg"
+                                    alt="No image found"
+                                    onerror="this.src='https://starwars-visualguide.com/assets/img/placeholder.jpg'">
+                            </li>
+                            <li (click)="moveToStarships(item.url)">{{item?.name}}</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-

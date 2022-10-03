@@ -21,6 +21,9 @@ export class CherDetailComponent implements OnInit {
   vehicles:any[] =[];
   starships:any[] =[];
   homeworld:any;
+  loading= true;
+  loading1= true;
+  loading2= true;
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
@@ -42,32 +45,44 @@ export class CherDetailComponent implements OnInit {
   
 
   async getVehicles(arr:any) {
-    for (let i = 0; i < arr.length; i++) {
+    let i;
+    for (i = 0; i < arr.length; i++) {
       await this.http.get<any>(arr[i]).toPromise().then(data => {
         data.url = Number(data.url.match(/\d+/g).join(''))
         this.vehicles.push(data);
         console.log("people",data);  
       })
     }
+    if(i == arr.length) {
+      this.loading1 = false;
+    }
   }
 
   async getStarships(arr:any) {
-    for (let i = 0; i < arr.length; i++) {
+    let i;
+    for (i = 0; i < arr.length; i++) {
       await this.http.get<any>(arr[i]).toPromise().then(data => {
         data.url = Number(data.url.match(/\d+/g).join(''))
         this.starships.push(data);
         console.log("people",data);  
       })
     }
+    if(i == arr.length) {
+      this.loading2 = false;
+    }
   }
 
   async getFilms(arr:any) {
-    for (let i = 0; i < arr.length; i++) {
+    let i;
+    for (i = 0; i < arr.length; i++) {
       await this.http.get<any>(arr[i]).toPromise().then(data => {
         data.url = Number(data.url.match(/\d+/g).join(''))
         this.films.push(data);  
         console.log("film",data);  
       })
+    }
+    if(i == arr.length) {
+      this.loading = false;
     }
   }
 

@@ -1,12 +1,19 @@
-<div class="breadcrump">
-  <ul class="bread">
-      <li (click)="moveToHome()">Home</li>
-      <li>/</li>
-      <li>planets</li>
-  </ul>
+<div class="container text-center main-logo">
+  <img src="https://www.wallpaperflare.com/static/929/720/1006/star-wars-general-grievous-star-wars-wallpaper-preview.jpg" alt="logo not found">
 </div>
-<div class="pagination">
-  <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+<div class="container b-border">
+  <div class="d-flex flex-row justify-content-between">
+    <div class="breadcrump">
+      <ul class="bread">
+        <li (click)="moveToHome()">Home</li>
+        <li>/</li>
+        <li>planets</li>
+      </ul>
+    </div>
+    <div class="pagination">
+      <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+    </div>
+  </div>
 </div>
 <div style="clear: both;"></div>
 <div class="container">
