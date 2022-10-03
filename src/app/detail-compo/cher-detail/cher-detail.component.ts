@@ -20,7 +20,7 @@ export class CherDetailComponent implements OnInit {
   films:any[] =[];
   vehicles:any[] =[];
   starships:any[] =[];
-  charName:string = '';
+  homeworld:any;
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
@@ -29,7 +29,9 @@ export class CherDetailComponent implements OnInit {
     this.detailArr.subscribe(result => {
       this.people = result;
       console.log("this is my reeeee", this.people);
-      this.charName = this.people?.name;
+      this.http.get(this.people.homeworld).subscribe((response:any) => {
+         this.homeworld = response.name;
+      })
       this.getVehicles(this.people.vehicles);
       this.getStarships(this.people.starships);
       this.getFilms(this.people.films);
@@ -38,6 +40,7 @@ export class CherDetailComponent implements OnInit {
     
   }
   
+
   async getVehicles(arr:any) {
     for (let i = 0; i < arr.length; i++) {
       await this.http.get<any>(arr[i]).toPromise().then(data => {
