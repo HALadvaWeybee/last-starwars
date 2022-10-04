@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { JsLoader } from 'src/app/shared/js-loader';
+
 
 @Component({
   selector: 'app-cher-detail',

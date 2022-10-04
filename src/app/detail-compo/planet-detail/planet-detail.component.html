@@ -39,7 +39,14 @@
                 <div>
                     <h5>Related films</h5>  
                 </div>
-                <div class="d-flex flex-row people-slider">
+                <div class="d-flex flex-row people-slider" *ngIf="loading">
+                    <div class="container">
+                        <div class="d-flex justify-content-center align-content-center">
+                                <div class="loader"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-row people-slider" *ngIf="!loading">
                     <ul *ngFor="let item of films">
                         <li><img src="https://starwars-visualguide.com/assets/img/films/{{item.url}}.jpg" alt="No image found"></li>
                         <li (click)="moveToFilm(item.url)">{{item?.title}}</li>
@@ -50,7 +57,14 @@
                 <div>
                     <h5>Related Peoples</h5>  
                 </div>
-                <div class="d-flex flex-row people-slider">
+                <div class="d-flex flex-row people-slider" *ngIf="loading1">
+                    <div class="container">
+                        <div class="d-flex justify-content-center align-content-center">
+                                <div class="loader"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-row people-slider" *ngIf="!loading1">
                     <ul *ngFor="let item of peoples">
                         <li><img src="https://starwars-visualguide.com/assets/img/characters/{{item.url}}.jpg" alt="No image found"></li>
                         <li (click)="moveToPeople(item.url)">{{item?.name}}</li>

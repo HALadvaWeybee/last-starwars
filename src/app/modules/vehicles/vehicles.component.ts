@@ -13,20 +13,24 @@ export class VehiclesComponent implements OnInit {
   chars:any;
   p:number = Number(localStorage.getItem('vehicle')) || 1;
   total:number = 0;
+  loading = true;
   ngOnInit(): void {
      this.getVehicles();
   }
+  
 
   getVehicles() {
     this.vehiclesService.getAllVehicle(this.p).subscribe((response:any) => {
        response.results.forEach((ele:any) => ele.url = Number(ele.url.match(/\d+/g).join('')))
        this.chars = response.results;
        this.total = response.count;
+       this.loading = false;
     })
   }
 
   pageChangeEvent(event: number) {
     this.p = event;
+    this.loading = true;
     localStorage.setItem('vehicle', JSON.stringify(this.p));
     this.getVehicles();
   }

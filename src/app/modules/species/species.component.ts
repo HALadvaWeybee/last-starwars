@@ -15,6 +15,7 @@ export class SpeciesComponent implements OnInit {
   chars:any;
   p:number = Number(localStorage.getItem('specie')) || 1;
   total:number = 0;
+  loading = true;
   ngOnInit(): void {
      this.getSpecies();
   }
@@ -24,11 +25,13 @@ export class SpeciesComponent implements OnInit {
        response.results.forEach((ele:any) => ele.url = Number(ele.url.match(/\d+/g).join('')))
        this.chars = response.results;
        this.total = response.count;
+       this.loading = false;
     })
   }
 
   pageChangeEvent(event: number) {
     this.p = event;
+    this.loading = true;
     localStorage.setItem('specie', JSON.stringify(this.p));
     this.getSpecies();
   }

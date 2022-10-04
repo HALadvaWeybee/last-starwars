@@ -17,6 +17,8 @@ export class ShipDetailComponent implements OnInit {
   starship:any;
   peoples:any[] =[];
   films:any[] =[];
+  loading = true;
+  loading1 = true;
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.paramMap.get('id'));
@@ -32,22 +34,30 @@ export class ShipDetailComponent implements OnInit {
   }
   
   async getPilots(arr:any) {
-    for (let i = 0; i < arr.length; i++) {
+    let i;
+    for (i = 0; i < arr.length; i++) {
       await this.http.get<any>(arr[i]).toPromise().then(data => {
         data.url = Number(data.url.match(/\d+/g).join(''))
         this.peoples.push(data);
         console.log("people",data);  
       })
     }
+    if(i == arr.length) {
+      this.loading1 = false;
+    }
   }
 
   async getFilms(arr:any) {
-    for (let i = 0; i < arr.length; i++) {
+    let i;
+    for (i = 0; i < arr.length; i++) {
       await this.http.get<any>(arr[i]).toPromise().then(data => {
         data.url = Number(data.url.match(/\d+/g).join(''))
         this.films.push(data);  
         console.log("film",data);  
       })
+    }
+    if(i == arr.length) {
+      this.loading = false;
     }
   }
 
