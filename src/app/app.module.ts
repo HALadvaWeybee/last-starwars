@@ -10,7 +10,6 @@ import { SpeciesComponent } from './modules/species/species.component';
 import { StarshipsComponent } from './modules/starships/starships.component';
 import { VehiclesComponent } from './modules/vehicles/vehicles.component';
 import { PlanetsComponent } from './modules/planets/planets.component';
-import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FilmDetailComponent } from './detail-compo/film-detail/film-detail.component';
 import { PlanetDetailComponent } from './detail-compo/planet-detail/planet-detail.component';
@@ -19,6 +18,8 @@ import { VehicleDetailComponent } from './detail-compo/vehicle-detail/vehicle-de
 import { SpecDetailComponent } from './detail-compo/spec-detail/spec-detail.component';
 import { CherDetailComponent } from './detail-compo/cher-detail/cher-detail.component';
 import { DetailCompoModule } from './detail-compo/detail-compo.module';
+import { BreadcrumbComponent } from './shared/breadcrumb/breadcrumb.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -29,13 +30,14 @@ import { DetailCompoModule } from './detail-compo/detail-compo.module';
     StarshipsComponent,
     VehiclesComponent,
     PlanetsComponent,
-    HomeComponent,
     FilmDetailComponent,
     PlanetDetailComponent,
     ShipDetailComponent,
     VehicleDetailComponent,
     SpecDetailComponent,
-    CherDetailComponent
+    CherDetailComponent,
+    BreadcrumbComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

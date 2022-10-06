@@ -1,29 +1,32 @@
-import { VehiclesService } from './../../services/vehicles.service';
-import { Component, OnInit } from '@angular/core';
-import { CherectersService } from 'src/app/services/cherecters.service';
+import { Component, OnInit , OnDestroy} from '@angular/core';
 import { Router } from '@angular/router';
-import { PlanetsService } from 'src/app/services/planets.service';
-import { FilmsService } from 'src/app/services/films.service';
-import { StarshipsService } from 'src/app/services/starships.service';
+import { MainService } from 'src/app/services/main.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cherecters',
   templateUrl: './cherecters.component.html',
   styleUrls: ['./cherecters.component.scss']
 })
-export class CherectersComponent implements OnInit { 
+export class CherectersComponent implements OnInit, OnDestroy { 
   // printDetails: { data: any; name: string; count: number }[] = [];
-  constructor(private cherecterService: CherectersService, private router: Router) { }
+  title = 'cherecters';
   chars:any;
-  p:number = Number(localStorage.getItem('cherecter')) || 1;
+  p:number = Number(localStorage.getItem('charecterPage')) || 1;
   total:number = 0;
   loading = true;
+  subs:Subscription = new Subscription();
+  // data:any;
+
+  constructor(private _mainService: MainService, private _router: Router) { }
   ngOnInit(): void {
+    //  this.data =  localStorage.getItem('pagination')
+    //  console.log("htit is local",JSON.parse(this.data));
      this.getCherecters();
   }
 
   getCherecters() {
-    this.cherecterService.getAllCherecter(this.p).subscribe((response:any) => {
+    this.subs = this._mainService.getAllCherecter(this.p).subscribe((response:any) => {
        response.results.forEach((ele:any) => ele.url = Number(ele.url.match(/\d+/g).join('')))
        this.chars = response.results;
        this.total = response.count;
@@ -34,29 +37,16 @@ export class CherectersComponent implements OnInit {
 
   pageChangeEvent(event: number) {
     this.p = event;
-    localStorage.setItem('cherecter', JSON.stringify(this.p));
+    localStorage.setItem('charecterPage', JSON.stringify(this.p));
     this.loading = true;
     this.getCherecters();
   }
-
-  // constructor(private charService: CherectersService, private planetsService: PlanetsService,
-  //    private filmsService:FilmsService,
-  //    private vehiclesService:VehiclesService,
-  //    private starshipsService:StarshipsService
-  //   ) {
-  // }
-
-  // ngOnInit() {
-  //   this.charService.getAllCherecter();
-  //   this.planetsService.getAllPlanets();
-  //   this.filmsService.getAllFilms();
-  //   this.vehiclesService.getAllVehicles();
-  //   this.starshipsService.getAllStarships();
-  //   this.printDetails = this.charService.details;
-  // }
-
   moveToHome() {
-    this.router.navigate(['']);
+    this._router.navigate(['']);
+  }
+
+  ngOnDestroy(): void {
+     this.subs.unsubscribe();
   }
 
 }

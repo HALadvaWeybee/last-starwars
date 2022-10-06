@@ -22,6 +22,7 @@
   .breadcrump {
     .bread{
          li {
+           cursor: pointer;
             display: inline-block;
             letter-spacing: 4px;
             margin: 20px 11px 0px 11px;
@@ -33,6 +34,9 @@
   margin-bottom: 20px; 
 }
 
+.name-of-image {
+  font-size: 20px;
+}
 .main_div {
     display: grid;
     grid-template-columns: auto auto auto auto auto;

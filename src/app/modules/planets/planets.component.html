@@ -1,21 +1,12 @@
-<div class="container text-center main-logo">
-  <img src="https://www.wallpaperflare.com/static/929/720/1006/star-wars-general-grievous-star-wars-wallpaper-preview.jpg" alt="logo not found">
-</div>
 <div class="container b-border">
   <div class="d-flex flex-row justify-content-between">
-    <div class="breadcrump">
-      <ul class="bread">
-        <li (click)="moveToHome()">Home</li>
-        <li>/</li>
-        <li>planets</li>
-      </ul>
-    </div>
+    <app-breadcrumb [data]="title"></app-breadcrumb>
     <div class="pagination">
       <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
     </div>
   </div>
 </div>
-<div style="clear: both;"></div>
+
 <div class="container">
   <div class="d-flex flex-row people-slider" *ngIf="loading">
     <div class="container">
@@ -27,7 +18,7 @@
   <div class="main_div" *ngIf="!loading">
     <div class="detail" *ngFor="let item of chars | paginate: { itemsPerPage: 10, currentPage: p, totalItems: total }; let i = index;">
       <a routerLink="{{item.url}}"><img src="https://starwars-visualguide.com/assets/img/planets/{{item.url}}.jpg" alt="No image found" onerror="this.src='https://starwars-visualguide.com/assets/img/placeholder.jpg'"></a>
-      <h4>{{item.name}}</h4>
+      <span class="name-of-image d-flex justify-content-center">{{item.name}}</span>
     </div>
   </div>
 </div>

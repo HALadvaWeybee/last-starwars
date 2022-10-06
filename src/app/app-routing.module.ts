@@ -1,16 +1,13 @@
-import { HomeComponent } from './home/home.component';
+import { CoreComponent } from './core/core.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path:"",
-    component:HomeComponent
-  }, 
-  {
-    path:"listof",
-    loadChildren: () => import('./modules/modules.module').then(m => m.ModulesModule),
-  },
+    path:'',
+    component:CoreComponent,
+    loadChildren:() => import('./core/core.module').then(m => m.CoreModule)
+  }
   // {
   //   path:'listof/:slug/detailof',
   //   loadChildren: () => import('./detail-compo/detail-compo.module').then(m => m.DetailCompoModule)
@@ -18,7 +15,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

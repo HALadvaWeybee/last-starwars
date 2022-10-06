@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CherectersService } from './cherecters.service';
+import { MainService } from './main.service';
 
-describe('CherectersService', () => {
-  let service: CherectersService;
+describe('MainService', () => {
+  let service: MainService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CherectersService);
+    service = TestBed.inject(MainService);
   });
 
   it('should be created', () => {

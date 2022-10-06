@@ -1,21 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { JsLoader } from 'src/app/shared/js-loader';
 
 @Component({
   selector: 'app-film-detail',
   templateUrl: './film-detail.component.html',
   styleUrls: ['./film-detail.component.scss'],
 })
-export class FilmDetailComponent implements OnInit {
-  constructor(
-    private route: ActivatedRoute,
-    private http: HttpClient,
-    private router: Router
-  ) {}
+export class FilmDetailComponent implements OnInit, OnDestroy {
   id: number = 0;
   detailArr: Observable<{}> = new Observable();
   film: any;
@@ -30,14 +24,23 @@ export class FilmDetailComponent implements OnInit {
   loading2 = true;
   loading3 = true;
   loading4 = true;
+  subs:Subscription = new Subscription();
+  breadCrumb:any[] = [];
+
+  constructor(
+    private _route: ActivatedRoute,
+    private _http: HttpClient,
+    private _router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.id = Number(this._route.snapshot.paramMap.get('id'));
+    this.breadCrumb.push(this._route.snapshot?.url[0]?.path);
     console.log(this.id);
-    this.detailArr = this.http
+    this.detailArr = this._http
       .get(`https://swapi.dev/api/films/${this.id}`)
       .pipe(map((res) => res));
-    this.detailArr.subscribe((result) => {
+    this.subs = this.detailArr.subscribe((result) => {
       this.film = result;
       console.log('this is my reeeee', this.film);
       this.getVehicles(this.film.vehicles);
@@ -45,13 +48,14 @@ export class FilmDetailComponent implements OnInit {
       this.getPeople(this.film.characters);
       this.getPlanets(this.film.planets);
       this.getSpecies(this.film.species);
+      this.breadCrumb.push(this.film?.name);
     });
   }
 
   async getVehicles(arr: any) {
     let i;
     for (i = 0; i < arr.length; i++) {
-      await this.http
+      await this._http
         .get<any>(arr[i])
         .toPromise()
         .then((data) => {
@@ -68,7 +72,7 @@ export class FilmDetailComponent implements OnInit {
   async getSpecies(arr: any) {
     let i;
     for (i = 0; i < arr.length; i++) {
-      await this.http
+      await this._http
         .get<any>(arr[i])
         .toPromise()
         .then((data) => {
@@ -85,7 +89,7 @@ export class FilmDetailComponent implements OnInit {
   async getPlanets(arr: any) {
     let i = 0;
     for (i = 0; i < arr.length; i++) {
-      await this.http
+      await this._http
         .get<any>(arr[i])
         .toPromise()
         .then((data) => {
@@ -102,7 +106,7 @@ export class FilmDetailComponent implements OnInit {
   async getStarships(arr: any) {
     let i;
     for (i = 0; i < arr.length; i++) {
-      await this.http
+      await this._http
         .get<any>(arr[i])
         .toPromise()
         .then((data) => {
@@ -119,7 +123,7 @@ export class FilmDetailComponent implements OnInit {
   async getPeople(arr: any) {
     let i;
     for (i = 0; i < arr.length; i++) {
-      await this.http
+      await this._http
         .get<any>(arr[i])
         .toPromise()
         .then((data) => {
@@ -134,24 +138,28 @@ export class FilmDetailComponent implements OnInit {
   }
 
   moveToPlanets(id: number) {
-    this.router.navigate(['listof/planets', id]);
+    this._router.navigate(['listof/planets', id]);
   }
   moveToPeople(id: number) {
-    this.router.navigate(['listof/cherecters', id]);
+    this._router.navigate(['listof/cherecters', id]);
   }
   moveToVehicles(id: number) {
-    this.router.navigate(['listof/vehicles', id]);
+    this._router.navigate(['listof/vehicles', id]);
   }
   moveToStarships(id: number) {
-    this.router.navigate(['listof/starships', id]);
+    this._router.navigate(['listof/starships', id]);
   }
   moveToSpecies(id: number) {
-    this.router.navigate(['listof/species', id]);
+    this._router.navigate(['listof/species', id]);
   }
   moveToFilm() {
-    this.router.navigate(['listof/films']);
+    this._router.navigate(['listof/films']);
   }
   moveToHome() {
-    this.router.navigate(['']);
+    this._router.navigate(['']);
   }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+ }
 }
