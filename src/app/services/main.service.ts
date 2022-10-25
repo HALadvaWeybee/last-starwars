@@ -12,6 +12,8 @@ export class MainService {
   SPECIE_URL = 'https://swapi.dev/api/species';
   STARSHIP_URL = 'https://swapi.dev/api/starships';
   VEHICLE_URL = 'https://swapi.dev/api/vehicles';
+
+  specifyData:any[]=[]
   
   constructor(private _http: HttpClient) { }
 
@@ -38,4 +40,16 @@ export class MainService {
   getAllFilm(page:number) {
     return this._http.get(this.FILM_URL + '?page=' + page);
   }
+  
+  async getHomeWorld(url:string) {
+    await this._http.get(url).toPromise().then((res:any) => {
+       return res;
+    })
+  }
+  async getSpecifyData(url:string) {
+    await this._http.get(url).toPromise().then((res:any) => {
+      this.specifyData = res;
+    });
+    return this.specifyData;
+  } 
 }

@@ -1,6 +1,0 @@
-<div class="breadcrump">
-    <ul class="bread">
-      <li (click)="moveToHome()">Home<span>/</span></li>
-      <li *ngFor="let item of breadCrumbArr; let i = index" (click)="moveToPrev()"><span *ngIf="i==1">/</span>{{item}}</li>
-    </ul>
-</div>

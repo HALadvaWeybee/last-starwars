@@ -1,3 +1,6 @@
+.b-border, .details {
+    color: white
+}
 ul {
     li {
         list-style-type: none;
@@ -9,12 +12,15 @@ ul {
         }
     }
 }
+
 .more-detail {
     margin-left: 30px;
  }
  
  .detail {
      margin-bottom: 29px;
+    //  background-color: white;
+    //  color: black;
  }
  .people-slider {
      width: 30%;
@@ -29,3 +35,4 @@ ul {
          }
      }
  }
+ 
